@@ -393,4 +393,7 @@ window.addEventListener(‘scroll’, () => nav.classList.toggle(‘stuck’, sc
 const obs = new IntersectionObserver(entries => {
 entries.forEach(e => { if(e.isIntersecting) e.target.classList.add(‘in’); });
 }, {threshold: 0.08});
-document.quer
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
