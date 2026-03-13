@@ -50,23 +50,23 @@ nav.scrolled{background:rgba(10,2,4,.97);border-color:rgba(255,16,40,0.2);backdr
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 52px 88px;position:relative;overflow:hidden;background:#0D0305}
 
 /* Animated red mesh */
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg::before{
-content:’’;position:absolute;inset:0;
-background:
-radial-gradient(ellipse 55% 60% at 15% 85%,rgba(255,16,40,.45) 0%,transparent 60%),
-radial-gradient(ellipse 45% 55% at 85% 15%,rgba(255,16,40,.28) 0%,transparent 65%),
-radial-gradient(ellipse 70% 40% at 50% 50%,rgba(255,16,40,.18) 0%,transparent 70%);
-animation:meshpulse 8s ease-in-out infinite alternate;
-}
-@keyframes meshpulse{0%{opacity:.7}100%{opacity:1}}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 
 /* Scanlines */
 .hero-bg::after{
 content:’’;position:absolute;inset:0;
 background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,16,40,.025) 2px,rgba(255,16,40,.025) 4px);
-pointer-events:none;
+pointer-events:none;z-index:2;
 }
+
+/* Real orbs that animate properly in all browsers */
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.orb1{width:70%;padding-bottom:70%;background:rgba(255,16,40,.55);bottom:-10%;left:-10%;animation:orb1move 9s ease-in-out infinite alternate}
+.orb2{width:50%;padding-bottom:50%;background:rgba(255,16,40,.32);top:-5%;right:-5%;animation:orb2move 11s ease-in-out infinite alternate}
+.orb3{width:40%;padding-bottom:40%;background:rgba(200,10,30,.2);top:40%;left:30%;animation:orb3move 7s ease-in-out infinite alternate}
+@keyframes orb1move{0%{transform:translate(0,0) scale(1)}100%{transform:translate(8%,-12%) scale(1.15)}}
+@keyframes orb2move{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-10%,10%) scale(1.2)}}
+@keyframes orb3move{0%{transform:translate(0,0) scale(1)}100%{transform:translate(5%,8%) scale(.85)}}
 
 /* Grid */
 .h-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,16,40,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,16,40,.08) 1px,transparent 1px);background-size:72px 72px;animation:gridfade 6s ease-in-out infinite alternate}
@@ -121,7 +121,7 @@ pointer-events:none;
 
 /* ── SECTIONS ── */
 section{padding:110px 52px}
-.si{max-width:1180px;margin:0 auto}
+.si{max-width:1180px;margin:0 auto;position:relative;z-index:1}
 .stag{font-family:‘Space Mono’,monospace;font-size:.6rem;color:#FF1028;letter-spacing:.14em;margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .stag::before{content:’’;width:22px;height:1px;background:#FF1028}
 .sh{font-size:clamp(32px,4.6vw,60px);font-weight:700;letter-spacing:-.03em;line-height:.92}
@@ -272,7 +272,7 @@ section{padding:72px 24px}
 <!-- HERO -->
 
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
+  <div class="hero-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
   <div class="h-grid"></div>
   <canvas id="particles"></canvas>
   <div class="ghost">JU</div>
@@ -322,7 +322,7 @@ section{padding:72px 24px}
 
 <!-- ABOUT -->
 
-<section id="about">
+<section id="about" style="position:relative;overflow:hidden"><div style="position:absolute;width:60%;padding-bottom:60%;border-radius:50%;background:rgba(255,16,40,.12);filter:blur(100px);bottom:-20%;right:-10%;pointer-events:none;z-index:0"></div><div style="position:absolute;width:40%;padding-bottom:40%;border-radius:50%;background:rgba(255,16,40,.08);filter:blur(80px);top:0;left:-10%;pointer-events:none;z-index:0"></div>
   <div class="si about-g">
     <div class="rv-x">
       <div class="stag">01 — About</div>
@@ -395,7 +395,7 @@ section{padding:72px 24px}
 
 <!-- SKILLS -->
 
-<section class="skills-bg" id="skills">
+<section class="skills-bg" id="skills" style="position:relative;overflow:hidden"><div style="position:absolute;width:50%;padding-bottom:50%;border-radius:50%;background:rgba(255,16,40,.1);filter:blur(90px);top:-10%;left:20%;pointer-events:none;z-index:0"></div>
   <div class="si">
     <div class="rv" style="margin-bottom:52px">
       <div class="stag">03 — Skills</div>
@@ -416,7 +416,7 @@ section{padding:72px 24px}
 
 <!-- GOALS -->
 
-<section id="goals">
+<section id="goals" style="position:relative;overflow:hidden"><div style="position:absolute;width:45%;padding-bottom:45%;border-radius:50%;background:rgba(255,16,40,.09);filter:blur(90px);bottom:-10%;right:-5%;pointer-events:none;z-index:0"></div>
   <div class="si goals-g">
     <div>
       <div class="rv-x">
